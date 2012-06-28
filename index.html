@@ -29,11 +29,7 @@
         {{#with person}}
             {{name}} 
 
-            {{#if canHaveChildren}}
-                <button {{action "addChild"}}>+</button>
-            {{else}}
-                [Max children reached.]
-            {{/if}}
+            <button {{action "addChild"}}>+</button>
  
             <ul>
                 {{#if children.length}}
