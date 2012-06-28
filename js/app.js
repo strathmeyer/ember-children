@@ -14,11 +14,13 @@ App.newPerson = function(name) {
     });
 };
 
-App.dalek = function () {
-	App.rootPerson.set('children', []);
-};
+App.dalekController = Em.Object.create({
+    exterminate: function () {
+        App.rootPerson.set('children', []);
+    }
+});
 
-App.rootPerson = App.newPerson('Eve')
+App.rootPerson = App.newPerson('Eve');
 
 App.PersonView = Em.View.extend({
     templateName: 'person',
