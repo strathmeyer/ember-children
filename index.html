@@ -22,26 +22,28 @@
 <body>
 
     <script type="text/x-handlebars">
-        {{view App.PersonView contentBinding="App.rootPerson"}}
+        {{view App.PersonView personBinding="App.rootPerson"}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="person">
-        {{#with content}}
+        {{#with person}}
             {{name}} 
 
             {{#if canHaveChildren}}
-                {{#view Em.Button target="contentView" action="addChild"}}+{{/view}}
+                <button {{action "addChild"}}>+</button>
             {{else}}
-                [[YOU HAVE ENOUGH CHILDREN ALREADY!]]
+                [Max children reached.]
             {{/if}}
  
-            {{#if children.length}}
-                {{#collection contentBinding="children" tagName="ul"}}
-                    {{view App.PersonView contentBinding="content"}}
-                {{/collection}}
-            {{else}}
-                (no children yet)
-            {{/if}}
+            <ul>
+                {{#if children.length}}
+                    {{#each children}}
+                        {{view App.PersonView personBinding="this" tagName="li"}}
+                    {{/each}}
+                {{else}}
+                    <li>(no children yet)</li>
+                {{/if}}
+            </ul>
         {{/with}}
         
     </script>

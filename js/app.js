@@ -14,19 +14,15 @@ App.newPerson = function(name) {
     });
 };
 
-App.rootPerson = App.Person.create({
-    name: 'A',
-    children: []
-});
+App.rootPerson = App.newPerson('Eve')
 
 App.PersonView = Em.View.extend({
     templateName: 'person',
+    person: null,
     addChild: function() {
-        var children = this.getPath('content.children'),
+        var children = this.getPath('person.children'),
             name = prompt('Name:');
 
         children.unshiftObject(App.newPerson(name));
-
-        console.log(this, children);
     }
 });
